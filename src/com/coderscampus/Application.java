@@ -39,7 +39,6 @@ public class Application {
 					if (inputtedPassword.equals(checkedPassword)) {
 						System.out.println("Welcome " + users[index].getName());
 						loginSuccessful = true;
-						loginAttempts = 5;
 						break;
 					} else {
 						index++;
@@ -48,12 +47,17 @@ public class Application {
 					index++;
 				}
 			}
-			if (loginSuccessful == false) {
-				System.out.println("Invalid login, please try again");
+			if (loginSuccessful == false ) {
 				loginAttempts++;	
+				if (loginAttempts < 5){
+					System.out.println("Invalid login, please try again");
+				}
+			} else {
+				break;
 			}
 		}
 		if (loginSuccessful == false) {
+			System.out.println("Invalid Login");
 			System.out.println("Maximum login attempts reached.");
 		}
 		scanner.close();

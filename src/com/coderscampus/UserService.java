@@ -44,7 +44,6 @@ public class UserService {
 				users[index] = new User(username, password, name);
 				index++;
 			}
-			
 		} catch (Exception e) {
 			System.out.println("Error reading file; " + e.getMessage());
 		}

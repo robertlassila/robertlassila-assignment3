@@ -18,8 +18,9 @@ public class Application {
 		
 		int loginAttempts = 0;
 		boolean loginSuccessful = false;
+		int maximumLoginAttempts = 5;
 		
-		while (loginAttempts < 5) {
+		while (loginAttempts < maximumLoginAttempts) {
 			
 			System.out.println("Enter your email: ");
 			String inputtedUsername = scanner.nextLine();
@@ -28,25 +29,8 @@ public class Application {
 			System.out.println("Enter your password: ");
 			String inputtedPassword = scanner.nextLine();
 			
-			
-			int index = 0;
-			while (index < numberOfUsers) {
-				String checkedUsername = users[index].getUsername();
-				String lowerCaseCheckedUsername = checkedUsername.toLowerCase();
-				String checkedPassword = users[index].getPassword();
-				
-				if (lowerCaseInputtedUsername.equals(lowerCaseCheckedUsername)) {
-					if (inputtedPassword.equals(checkedPassword)) {
-						System.out.println("Welcome " + users[index].getName());
-						loginSuccessful = true;
-						break;
-					} else {
-						index++;
-					}
-				} else {
-					index++;
-				}
-			}
+			loginSuccessful = UserService.checkUserInformation(numberOfUsers, lowerCaseInputtedUsername, inputtedPassword);
+
 			if (loginSuccessful == false ) {
 				loginAttempts++;	
 				if (loginAttempts < 5){
@@ -58,7 +42,7 @@ public class Application {
 		}
 		if (loginSuccessful == false) {
 			System.out.println("Invalid Login");
-			System.out.println("Maximum login attempts reached.");
+			System.out.println("Maximum login attempts reached. Have a nice day.");
 		}
 		scanner.close();
 		

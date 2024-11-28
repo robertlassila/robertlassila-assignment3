@@ -49,6 +49,28 @@ public class UserService {
 		}
 		return users;
 	}
-	
+	public static boolean checkUserInformation(int numberOfUsers, String lowerCaseInputtedUsername, String inputtedPassword) {
+		boolean loginSuccessful = false;
+		int index = 0;
+		while (index < numberOfUsers) {
+			String checkedUsername = users[index].getUsername();
+			String lowerCaseCheckedUsername = checkedUsername.toLowerCase();
+			String checkedPassword = users[index].getPassword();
+			
+			if (lowerCaseInputtedUsername.equals(lowerCaseCheckedUsername)) {
+				if (inputtedPassword.equals(checkedPassword)) {
+					System.out.println("Welcome " + users[index].getName());
+					loginSuccessful = true;
+					break;
+				} else {
+					index++;
+				}
+			} else {
+				index++;
+			}
+		}
+		return loginSuccessful;
+		
+	}
 	
 }

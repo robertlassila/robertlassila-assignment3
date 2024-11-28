@@ -8,11 +8,9 @@ public class Application {
 		
 		//creates local variable with the number of users
 		int numberOfUsers = UserService.determineNumberOfUsers();
-		//System.out.println(numberOfUsers);
 		
 		//creates local array with all the users
 		User[] users = UserService.userInformation();
-		//System.out.println(users[1].getPassword());
 		
 		Scanner scanner = new Scanner(System.in);
 		
@@ -33,10 +31,11 @@ public class Application {
 
 			if (loginSuccessful == false ) {
 				loginAttempts++;	
-				if (loginAttempts < 5){
+				if (loginAttempts < maximumLoginAttempts){
 					System.out.println("Invalid login, please try again");
 				}
 			} else {
+				//System.out.println("Welcome " + users[index].getName()); //need to return index for this to work
 				break;
 			}
 		}
@@ -46,7 +45,5 @@ public class Application {
 		}
 		scanner.close();
 		
-		
 	}
-
 }
